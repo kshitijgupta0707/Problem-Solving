@@ -12,7 +12,7 @@ pair<int, int> searchh(int matrix[5][5])
             }
         }
     }
-    return {0,0};
+    return {0, 0};
 }
 int main()
 {
@@ -20,8 +20,10 @@ int main()
 
     for (int i = 0; i < 5; i++)
     {
-
-            cin >> matrix[i][0] >> matrix[i][1] >> matrix[i][2] >> matrix[i][3] >> matrix[i][4];
+        for (int j = 0; j < 5; j++)
+        {
+            cin >> matrix[i][j];
+        }
     }
     int count = 0;
     pair<int, int> p = searchh(matrix);
@@ -60,5 +62,6 @@ int main()
         }
     }
 
-    cout << count ;
+    cout << count;
 }
+  
