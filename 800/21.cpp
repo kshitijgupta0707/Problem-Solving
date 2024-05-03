@@ -29,7 +29,7 @@ int main()
             else if (arr[i] == 0 && arr[j] == 0)
             {
                 j++;
-                c = max(c, j - i + );
+                c = max(c, j - i);
             }
             else
             {
