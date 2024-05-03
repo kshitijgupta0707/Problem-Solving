@@ -39,7 +39,7 @@ int main()
             else
             {
                 cout << "1" << endl
-                     << x << endl;
+                     << x << endl; 
             }
         }
     }
