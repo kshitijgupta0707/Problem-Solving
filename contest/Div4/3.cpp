@@ -12,59 +12,43 @@ int main()
     {
         string s;
         cin >> s;
-
-        int first = 1;
-        int count = 1;
-        bool end0 = false;
-        bool end1 = false;
-        if (s[s.length() - 1] == '0')
-            end0 = true;
-        else
-            end1 = true;
-        int i;
-        if (end0)
+        int c = 0;
+        bool t = true;
+        int i = 0;
+        while (i < s.length())
         {
-            for (i = s.length(); i >= 0; i--)
+            if (t && s[i] == '0')
             {
-                if (s[i] == '1')
+                while (s[i] == '0')
                 {
-                    count += 2;
-                    break;
+                    i++;
                 }
+                while (s[i] == '1')
+                {
+                    i++;
+                }
+                c++;
+                t = false;
             }
-        }
-        if (end1)
-        {
-            for (i = s.length(); i >= 0; i--)
+            if (i < s.length())
             {
                 if (s[i] == '0')
                 {
-                    count += 1;
-                    break;
+                    while (s[i] == '0')
+                    {
+                        i++;
+                    }
                 }
+                else
+                {
+                    while (s[i] == '1')
+                    {
+                        i++;
+                    }
+                }
+                c++;
             }
         }
-        while (i >= 0)
-        {
-
-            if (i >= 2 && s[i] == '1' && s[i - 1] == '0' && s[i - 2] == '1')
-            {
-                i--;
-                count += 2;
-            }
-            else if (s[i] == '0')
-            {
-                while (i >= 0 && s[i] == '0')
-                {
-                    i--;
-                }
-                if (i > 0)
-                {
-                    count++;
-                }
-            }
-            i--;
-        }
-        cout << count << endl;
+        cout << c << endl;
     }
 }
