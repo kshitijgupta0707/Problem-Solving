@@ -10,70 +10,55 @@ int main()
     cin >> t;
     while (t--)
     {
-        long long r;
-        cin >> r;
-        long long m = pow(r + 1, 2);
-        long long n = pow(r, 2); 
-        long long a = 1, b = 1;
-        long long c = 0;
-        while (1)
+        int n;
+        cin >> n;
+
+        int c = 0;
+        int x = n;
+        while (x >= 0)
         {
-            while (1)
+            int i = 0, j = n + 1;
+            int high = 0, low = 0;
+            while (i < j)
             {
-                if (a * a + b * b < n)
+                int mid = i + (j - i) / 2;
+                if (n * n == x * x + mid * mid)
                 {
-                    b++;
+                    low = mid;
+                    break;
                 }
-                else if (a * a + b * b < m && a * a + b * b >= n)
+                else if (n * n < x * x + mid * mid)
                 {
-                    c++;
-                    b++;
+                    low = mid;
+                    j = mid;
                 }
                 else
+                {
+                    i = mid + 1;
+                }
+            }
+            i = 0, j = n + 1;
+            while (i < j)
+            {
+                int mid = i + (j - i) / 2;
+                if ((n + 1) * (n + 1) == x * x + mid * mid)
+                {
+                    high = mid - 1;
                     break;
+                }
+                else if ((n + 1) * (n + 1) > x * x + mid * mid)
+                {
+                    high = mid;
+                    i = mid;
+                }
+                else
+                {
+                    j = mid - 1;
+                }
             }
-            b = 1;
-            a++;
-            if (a * a + b * b >= m)
-                break;
+            c += high - low + 1;
+            x--;
         }
-        c = c * 4;
-        if (0 < m && 0 >= n)
-        {
-            c++;
-        }
-        a = 0;
-        b = 1;
-        while (1)
-        {
-            if (a * a + b * b < n)
-            {
-                b++;
-            }
-            else if (a * a + b * b < m && a * a + b * b >= n)
-            {
-                c += 2;
-                b++;
-            }
-            else
-                break;
-        }
-        a = 1;
-        b = 0;
-        while (1)
-        {
-            if (a * a + b * b < n)
-            {
-                a++;
-            }
-            else if (a * a + b * b < m && a * a + b * b >= n)
-            {
-                c += 2;
-                a++;
-            }
-            else
-                break;
-        }
-        cout << c << endl;
+        cout << 4 * c << endl;
     }
 }
