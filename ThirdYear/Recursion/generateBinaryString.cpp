@@ -11,40 +11,37 @@ using namespace std;
 
 // } Driver Code Ends
 // User function Template for C++
-
-void generateStrings(vector<string> &vec, char str[], int num, int i)
+void solve(vector<string> &s, char str[], int n, int open, int close, int index)
 {
-    if (i == num)
+    if (open == n && close == n)
     {
-        vec.push_back(str);
+        str[index] = '\0';
+        s.push_back(str);
         return;
     }
-    if (str[i - 1] == '1')
+    if (open < n)
     {
-        str[i] = '0';
-        generateStrings(vec, str, num, i + 1);
+        str[index] = '(';
+        solve(s, str, n, open + 1, close, index + 1);
     }
-    else
+    if (close < open)
     {
-        str[i] = '0';
-        generateStrings(vec, str, num, i + 1);
-        str[i] = '1';
-        generateStrings(vec, str, num, i + 1);
+        str[index] = ')';
+         solve(s, str, n, open, close + 1, index + 1);
     }
 }
-vector<string> generateBinaryStrings(int num)
+
+vector<string> generateParenthesis(int n)
 {
-
-    char str[num + 1]; // +1 for the null terminator
-    str[num] = '\0';   // null terminator for string
-    vector<string> vec;
-    str[0] = '0';
-    generateStrings(vec, str, num, 1);
-    str[0] = '1';
-    generateStrings(vec, str, num, 1);
-    return vec;
-};
-
+    vector<string> s;
+    if (n == 0)
+        return s;
+    char str[2 * n + 1];
+    str[0] = '(';
+    str[2 * n] = '\0';
+    solve(s, str, n, 1, 0 , 0);
+    return s;
+}
 int main()
 {
 }
